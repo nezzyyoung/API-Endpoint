@@ -8,10 +8,9 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 # AWS configuration
-aws_access_key_id = 'AKIA2TMZO3HMKJMDGOG5'
-aws_secret_access_key = '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'
-aws_region = 'us-east-1'
-
+aws_access_key_id =''
+aws_secret_access_key =''
+aws_region = ''
 dynamodb = boto3.resource('dynamodb',
                           region_name=aws_region,
                           aws_access_key_id=aws_access_key_id,
