@@ -1,3 +1,4 @@
+from collections import UserString
 import json
 import boto3
 from boto3.dynamodb.conditions import Key
@@ -7,17 +8,17 @@ from flask import Flask, request, Response
 app = Flask(__name__)
 
 # AWS configuration
-aws_access_key_id = 'your_access_key_id'
-aws_secret_access_key = 'your_secret_access_key'
-aws_region = 'your_region'
+aws_access_key_id = 'AKIA2TMZO3HMKJMDGOG5'
+aws_secret_access_key = 'kba852k4sdaHSOgmGUYlfv1hfDwOZer5D7ernl46'
+aws_region = 'us-east-1'
 
 dynamodb = boto3.resource('dynamodb',
                           region_name=aws_region,
                           aws_access_key_id=aws_access_key_id,
                           aws_secret_access_key=aws_secret_access_key)
 
-def get_item(table_name, key):
-    table = dynamodb.Table(table_name)
+def get_item(users, key):
+    table = dynamodb.Table(users)
 
     try:
         response = table.get_item(Key=key)
@@ -34,9 +35,9 @@ def get_item(table_name, key):
 def get_data():
     if request.method == 'GET':
         try:
-            table_name = 'your_table_name'
-            key = {'your_primary_key': 'value'}
-            item = get_item(table_name, key)
+            table_name = 'users'
+            key = {'104': 'caleb'}
+            item = get_item(UserString, key)
 
             if item:
                 return Response(json.dumps(item), status=200, mimetype='application/json')
